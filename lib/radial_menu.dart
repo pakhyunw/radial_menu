@@ -13,7 +13,7 @@ class RadialMenu extends StatefulWidget {
   final double entrySize;
 
   const RadialMenu(
-      {@required this.entries,
+      {required this.entries,
       this.color = Colors.orangeAccent,
       this.size = 160,
       this.entrySize = 85});
@@ -25,13 +25,13 @@ class RadialMenu extends StatefulWidget {
 /// The [RadialMenuEntry] with icons, callbacks, text and colors
 class RadialMenuEntry {
   /// The callback to trigger on an [RadialMenuEntry] tap
-  final Function onTap;
+  final Function? onTap;
 
   /// The[RadialMenuEntry icon
   final IconData icon;
 
   /// The [RadialMenuEntry] icon color
-  Color iconColor;
+  Color? iconColor;
 
   /// The [RadialMenuEntry] color. Defaults to [Colors.black].
   final Color color;
@@ -40,14 +40,14 @@ class RadialMenuEntry {
   final String text;
 
   /// The [RadialMenuEntry] text color. Defaults to [Colors.black].
-  Color textColor;
+  Color? textColor;
 
   /// The [RadialMenuEntry] icon size. Defaults to 24.
   final double iconSize;
 
   RadialMenuEntry(
       {this.onTap,
-      @required this.icon,
+      required this.icon,
       this.color = Colors.black,
       this.text = '',
       textColor,
@@ -102,33 +102,33 @@ class _RadialMenuState extends State<RadialMenu> {
 }
 
 class _CenterRotated extends StatelessWidget {
-  final Size parentSize;
-  final Size size;
+  final Size? parentSize;
+  final Size? size;
   final double angle;
-  final Widget child;
+  final Widget? child;
 
   _CenterRotated(
       {this.angle = 0,
-      @required this.size,
-      @required this.parentSize,
+      required this.size,
+      required this.parentSize,
       this.child});
 
   @override
   Widget build(BuildContext context) {
     return Transform.rotate(
         angle: angle,
-        origin: Offset(parentSize.width / 2 - size.width / 2,
-            parentSize.height / 2 - size.height / 2),
+        origin: Offset(parentSize!.width / 2 - size!.width / 2,
+            parentSize!.height / 2 - size!.height / 2),
         child: Container(
-          width: size.width,
-          height: size.height,
+          width: size!.width,
+          height: size!.height,
           child: Transform.rotate(angle: -angle, child: child),
         ));
   }
 }
 
 List<Widget> _renderWheel(List<RadialMenuEntry> entries,
-    {Size parentSize, Size childSize, Function onTap}) {
+    {Size? parentSize, Size? childSize, Function? onTap}) {
   return entries
       .asMap()
       .map((index, entry) => MapEntry(
