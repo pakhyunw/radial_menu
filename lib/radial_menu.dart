@@ -91,22 +91,25 @@ class _RadialMenuState extends State<RadialMenu> {
                   shape: CircleBorder(),
                   color: Colors.white,
                 ),
-                child: Image.asset("assets/logo.png"),
+                child: Icon(
+                  Icons.more_horiz,
+                  color: Colors.white,
+                )
               ),
             ) : FloatingActionButton(
                 heroTag: 'togglePartners',
                 mini: true,
-                child: Icon(
-                  Icons.more_horiz,
-                  color: Colors.white,
-                ),
                 backgroundColor: widget.color,
                 elevation: 0,
                 onPressed: () {
                   setState(() {
                     open = !open;
                   });
-                })),
+                },
+                child: Icon(
+                  Icons.more_horiz,
+                  color: Colors.white,
+                ))),
         if (open)
           ..._renderWheel(
             widget.entries,
