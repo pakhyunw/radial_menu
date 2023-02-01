@@ -83,7 +83,11 @@ class _RadialMenuState extends State<RadialMenu> {
             alignment: Alignment.center,
             child: isDraggable ? DraggableFloatingActionButton(
               initialOffset: const Offset(120, 70),
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  open = !open;
+                });
+              },
               child: Container(
                 width: 60,
                 height: 60,
