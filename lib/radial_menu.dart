@@ -5,18 +5,22 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import 'draggable_floating_action_button.dart';
+
 /// The [RadialMenu] widget you can import and use
 class RadialMenu extends StatefulWidget {
   final List<RadialMenuEntry> entries;
   final Color color;
   final double size;
   final double entrySize;
+  final bool isDraggable;
 
   const RadialMenu(
       {required this.entries,
       this.color = Colors.orangeAccent,
       this.size = 160,
-      this.entrySize = 85});
+      this.entrySize = 85,
+      this.isDraggable = false});
 
   @override
   State<StatefulWidget> createState() => _RadialMenuState();
@@ -65,6 +69,7 @@ class _RadialMenuState extends State<RadialMenu> {
   Widget build(BuildContext context) {
     Size subCategorySize = Size(widget.entrySize, widget.entrySize);
     Size mainSize = Size(widget.size, widget.size);
+    bool isDraggable = widget.isDraggable;
 
     return Container(
       width: mainSize.width,
@@ -76,7 +81,19 @@ class _RadialMenuState extends State<RadialMenu> {
       child: Stack(children: <Widget>[
         Align(
             alignment: Alignment.center,
-            child: FloatingActionButton(
+            child: isDraggable ? DraggableFloatingActionButton(
+              initialOffset: const Offset(120, 70),
+              onPressed: () {},
+              child: Container(
+                width: 60,
+                height: 60,
+                decoration: ShapeDecoration(
+                  shape: CircleBorder(),
+                  color: Colors.white,
+                ),
+                child: Image.asset("assets/logo.png"),
+              ),
+            ) : FloatingActionButton(
                 heroTag: 'togglePartners',
                 mini: true,
                 child: Icon(
