@@ -88,17 +88,9 @@ class _RadialMenuState extends State<RadialMenu> {
                   open = !open;
                 });
               },
-              child: Container(
-                width: 60,
-                height: 60,
-                decoration: ShapeDecoration(
-                  shape: CircleBorder(),
-                  color: Colors.white,
-                ),
-                child: Icon(
-                  Icons.more_horiz,
-                  color: Colors.white,
-                )
+              child: Icon(
+                Icons.more_horiz,
+                color: Colors.white,
               ),
             ) : FloatingActionButton(
                 heroTag: 'togglePartners',
